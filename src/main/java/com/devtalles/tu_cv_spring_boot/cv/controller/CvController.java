@@ -17,7 +17,7 @@ public class CvController {
   @GetMapping({ "/", "", "/index" })
   public String index(Model model) {
     model.addAttribute("name", "Alejandro");
-    var person = new Person("Pepe", "Perez", "Desarrollador");
+    var person = new Person("Pe", "Perez", "Desarrollador");
     model.addAttribute("person", person);
     return "index";
   }

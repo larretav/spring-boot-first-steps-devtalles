@@ -10,7 +10,12 @@
 <body>
   <h1>Mi CV - ALV</h1>
   <p th:text="'Hola mi nombre es ' + ${name}">Texto por defecto</p>
-  <p th:text="'Hola mi nombre es ' + ${person.name} + ' ' + ${person.lastName} + ', soy ' + ${person.profession}">Texto por defecto</p>
+  <p th:text="'Hola mi nombre es ' + ${person.name} + ' ' + ${person.lastName} + ', soy ' + ${person.profession}">Texto
+    por defecto</p>
+  <!-- Ejemplo de IF -->
+  <p th:if="${person.name.length() < 3}" style="color: red">El nombre tiene menos de 3 letras</p>
+  
+
 </body>
 
 </html>
