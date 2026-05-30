@@ -6,16 +6,46 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.devtalles.tu_cv_spring_boot.cv.model.Skill;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller()
+@RequestMapping("/skills")
 public class SkillsController {
 
-  @GetMapping("/skills")
-  public String index(Model model) {
-    // var skills = List.of("Java", "Spring", "React", "Nextjs", "HTML", "CSS", "JavaScript");
-    var skills = List.of();
-    model.addAttribute("skills", skills);
+  private final List<Skill> skills = new ArrayList<Skill>();
+
+  // @GetMapping
+  // public String showSkills(Model model) {
+  // model.addAttribute("skills", skills);
+  // return "skills";
+  // }
+
+  @GetMapping()
+  public String showSkills() {
     return "skills";
+  }
+
+  @ModelAttribute(name = "skills")
+  public List<Skill> getSkills() {
+    return skills;
+  }
+
+  @GetMapping("/new")
+  public String newSkill(Model model) {
+    model.addAttribute("skill", new Skill());
+    return "add-skill";
+  }
+
+  @PostMapping("/add")
+  public String addSkill(@ModelAttribute Skill skill) {
+    skills.add(skill);
+    return "redirect:/skills";
   }
 
 }
